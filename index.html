@@ -1,0 +1,117 @@
+باید براشون یه دنیای کوچیک ساخت.
+    </p>
+    <p>این دنیا رو برای تو ساختم.</p>
+    <div class="buttons">
+      <button class="primary" onclick="goTo(2)">
+        برای دیدن ادامه کلیک کن ✨
+      </button>
+    </div>
+    <div class="small">یک دعوت کوچک، با یک عالمه احساس</div>
+  </section>
+
+  <!-- بخش دوم -->
+  <section class="page" id="page2">
+    <div class="eyebrow">A MESSAGE FROM MY HEART</div>
+    <h2>برای تو که خاصی...</h2>
+    <div class="gold-line"></div>
+    <p>
+      شاید نتونم همیشه تمام احساساتم رو با کلمات توضیح بدم،
+      اما بعضی آدم‌ها هستن که حضورشون
+      می‌تونه یه روز معمولی رو به یه خاطره قشنگ تبدیل کنه.
+    </p>
+    <p>
+      خواستم این بار به جای یه پیام ساده،
+      یه دعوت متفاوت برات داشته باشم...
+    </p>
+    <div class="buttons">
+      <button class="secondary" onclick="goTo(1)">قبلی</button>
+      <button class="primary" onclick="goTo(3)">دعوت منو ببین 🖤</button>
+    </div>
+    <div class="small">Made with love</div>
+  </section>
+
+  <!-- بخش سوم -->
+  <section class="page" id="page3">
+    <div class="eyebrow">YOU ARE INVITED</div>
+    <div class="heart">♡</div>
+    <h2>دعوتی مخصوص تو</h2>
+    <div class="gold-line"></div>
+    <p>
+      دوست دارم یه وقت قشنگ رو کنار هم بگذرونیم،
+      بدون عجله، بدون دغدغه؛
+      فقط با یه خاطره خوب که با هم می‌سازیم.
+    </p>
+    <p>
+      نظرت چیه؟ ✨
+    </p>
+    <div class="buttons">
+      <button class="primary" onclick="acceptInvite()">
+        با کمال میل 🖤
+      </button>
+      <button class="secondary" onclick="goTo(2)">بازگشت</button>
+    </div>
+    <div id="result" aria-live="polite"></div>
+    <div class="small">پایان این صفحه، شاید شروع یک خاطره باشد...</div>
+  </section>
+</main>
+
+<script>
+function goTo(number) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+
+  document.getElementById('page' + number).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function acceptInvite() {
+  document.getElementById('result').textContent =
+    'این تازه شروع یه خاطره قشنگه ✨';
+  celebrate();
+}
+
+function celebrate() {
+  const symbols = ['♥', '✦', '✧'];
+
+  for (let i = 0; i < 24; i++) {
+    const item = document.createElement('span');
+    item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    item.style.cssText = 
+      position:fixed;
+      z-index:10;
+      left:${Math.random() * 100}vw;
+      top:-25px;
+      color:#e7c878;
+      font-size:${12 + Math.random() * 18}px;
+      pointer-events:none;
+      transition:transform 3s linear, opacity 3s linear;
+    ;
+    document.body.appendChild(item);
+
+    requestAnimationFrame(() => {
+      item.style.transform =
+        'translateY(' + (window.innerHeight + 60) + 'px) rotate(360deg)';
+      item.style.opacity = '0';
+    });
+
+    setTimeout(() => item.remove(), 3200);
+  }
+}
+
+// ایجاد ستاره‌های پس‌زمینه
+const stars = document.getElementById('stars');
+
+for (let i = 0; i < 45; i++) {
+  const star = document.createElement('span');
+  star.className = 'star';
+  star.textContent = '✦';
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 100 + '%';
+  star.style.animationDelay = Math.random() * 3 + 's';
+  star.style.fontSize = (7 + Math.random() * 9) + 'px';
+  stars.appendChild(star);
+}
+</script>
+</body>
+</html>
